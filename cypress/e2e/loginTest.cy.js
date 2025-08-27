@@ -10,6 +10,7 @@ describe('Login page test', () => {
     cy.get('#submit').click()
     cy.url().should('contain', 'https://practicetestautomation.com/logged-in-successfully/')
     cy.contains('Logged In Successfully').should('be.visible')
+    cy.screenshot("LoginSuccess")
   })
 
   //testing Logout functionality
@@ -20,6 +21,7 @@ describe('Login page test', () => {
 
   cy.get('.wp-block-button__link').click()
   cy.url().should('contain', 'https://practicetestautomation.com/')
+  cy.screenshot("LogoutSuccess")
 })
 
 
@@ -30,6 +32,7 @@ describe('Login page test', () => {
     cy.get('#password').type('Password123 ')
     cy.get('#submit').click()
     cy.get('#error').should('be.visible').and('contain', 'Your username is invalid!')
+    cy.screenshot("InvalidUsernameError")
   })
 
   /// testing login with invalid Password
@@ -38,12 +41,14 @@ describe('Login page test', () => {
     cy.get('#password').type('incorrectPassword')
     cy.get('#submit').click()
     cy.get('#error').should('be.visible').and('contain', 'Your password is invalid!')
+    cy.screenshot("InvalidPasswordError")
   })
 
   // testing login with empty fields
   it('should display error message when fields are empty', () => { 
     cy.get('#submit').click()
     cy.get('#error').should('be.visible').and('contain', 'Your username is invalid!')
+    cy.screenshot("EmptyFieldsError")
   })
 
   
